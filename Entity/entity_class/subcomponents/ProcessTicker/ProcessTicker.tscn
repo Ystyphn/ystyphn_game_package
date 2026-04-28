@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://fay5hymflgbn"]
+
+[ext_resource type="Script" uid="uid://qsuok67n2ep2" path="res://classes/entity_class/subcomponents/ProcessTicker/process_ticker.gd" id="1_brcrc"]
+
+[node name="ProcessTicker" type="Timer" unique_id=816610835]
+process_callback = 0
+wait_time = 0.05
+autostart = true
+script = ExtResource("1_brcrc")
+
+[connection signal="timeout" from="." to="." method="_on_process_tick"]
