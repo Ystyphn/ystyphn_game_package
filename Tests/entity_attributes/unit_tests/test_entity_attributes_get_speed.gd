@@ -1,6 +1,6 @@
 extends GutTest
 
-const BASE_SPEED: float = 20.0
+const BASE_SPEED: float = 10.0
 
 var entity_attributes: EntityAttributes
 

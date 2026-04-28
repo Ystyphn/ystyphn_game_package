@@ -2,7 +2,7 @@ extends GutTest
 
 var entity_attributes: EntityAttributes
 
-const BASE_SPEED := 20.0
+const BASE_SPEED := 10.0
 
 
 func before_each():
