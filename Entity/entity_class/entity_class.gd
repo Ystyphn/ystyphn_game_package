@@ -1,3 +1,4 @@
+@tool
 @abstract
 extends CharacterBody2D
 class_name EntityClass
@@ -9,8 +10,33 @@ enum ENTITY_TYPES {NONE, BIONIC, NON_BIONIC}
 ## child classes.
 @export var __state_machine_path: NodePath
 
+## @experimental
 var __entity_attributes: EntityAttributes
 var __state_machine: StateMachine
+
+
+func _ready() -> void:
+	update_configuration_warnings()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings: PackedStringArray = []
+	var has_state_machine: bool = false
+	
+	for child in get_children():
+		if child is StateMachine:
+			has_state_machine = true
+			break
+	
+	if not has_state_machine:
+		warnings.append("This entity variant has no state machine. This entity will do nothing.\n Please add a StateMachine.")
+	
+	return warnings
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_CHILD_ORDER_CHANGED:
+		update_configuration_warnings()
 
 
 func apply_damage(dmg: Damage) -> void:

@@ -2,7 +2,7 @@ extends ControllableState
 class_name FakePlayerState
 
 
-func enter(t: TransitionParameter) -> void:
+func enter(_t: TransitionParameter) -> void:
 	pass
 
 
@@ -10,7 +10,7 @@ func exit() -> void:
 	pass
 
 
-func handle_input(input: GameInput) -> void:
+func handle_input(_input: GameInput) -> void:
 	pass
 
 

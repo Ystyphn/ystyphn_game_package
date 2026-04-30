@@ -12,7 +12,7 @@ func exit() -> void:
 
 
 # Just to mock something
-func initialize(e: Variant) -> void:
+func initialize(_e: Variant) -> void:
 	pass
 
 

@@ -13,7 +13,28 @@ var __state_pool: StatePool
 var __state_runner: StateRunner
 
 
-@abstract func _ready() -> void
+func _ready() -> void:
+	update_configuration_warnings()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings: PackedStringArray = []
+	var has_state_runner: bool = false
+	
+	for child in get_children():
+		if child is StateRunner:
+			has_state_runner = true
+			break
+	
+	if not has_state_runner:
+		warnings.append("This state machine has no state runner. This will not run any states...")
+	
+	return warnings
+
+
+func _notification(_what: int) -> void:
+	if _what == NOTIFICATION_CHILD_ORDER_CHANGED:
+		update_configuration_warnings()
 
 
 ## @experimental

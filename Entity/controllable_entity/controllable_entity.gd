@@ -1,3 +1,4 @@
+@tool
 @abstract
 extends EntityClass
 class_name ControllableEntity
@@ -9,6 +10,7 @@ var __input_receivers: Node
 
 
 func _ready() -> void:
+	super._ready()
 	if __input_receivers_path.is_empty():
 		push_error("Input receivers path was not set!")
 		return

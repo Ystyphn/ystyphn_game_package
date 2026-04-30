@@ -4,7 +4,7 @@ class_name EntityAttributes
 
 const BASE_CRIT_CHANCE: float = 0.05
 const BASE_DEFENSE: float = 10.0
-const BASE_SPEED: float = 10.0
+const BASE_SPEED: float = 30.0
 
 
 var __buffs: Array[Buff]
