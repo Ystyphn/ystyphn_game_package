@@ -1,10 +1,6 @@
 extends GutTest
 
 
-class FakeEntity extends EntityClass:
-	pass
-
-
 func test_ready_sets_entity_ref_when_entity_path_is_valid() -> void:
 	# Arrange
 	var parent := Node.new()

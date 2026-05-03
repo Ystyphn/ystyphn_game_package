@@ -1,4 +1,4 @@
-extends ControllableState
+extends PlayerState
 class_name FakePlayerState
 
 

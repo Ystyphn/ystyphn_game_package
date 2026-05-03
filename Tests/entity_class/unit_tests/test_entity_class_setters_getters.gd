@@ -1,10 +1,6 @@
 extends GutTest
 
 
-class FakeEntity extends EntityClass:
-	pass
-
-
 var entity: FakeEntity
 
 

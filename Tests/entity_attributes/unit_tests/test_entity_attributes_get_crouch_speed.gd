@@ -7,6 +7,7 @@ const BASE_SPEED := 10.0
 
 func before_each():
 	entity_attributes = EntityAttributes.new()
+	entity_attributes.set_base_speed(BASE_SPEED)
 
 
 # =========================================================

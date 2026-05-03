@@ -1,11 +1,6 @@
 extends GutTest
 
 
-
-class FakeEntity extends EntityClass:
-	pass
-
-
 var hitbox_2d: HitBox2D
 
 

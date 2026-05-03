@@ -4,9 +4,8 @@ class_name EntityAttributes
 
 const BASE_CRIT_CHANCE: float = 0.05
 const BASE_DEFENSE: float = 10.0
-const BASE_SPEED: float = 30.0
 
-
+var __base_speed: float = 25.0
 var __buffs: Array[Buff]
 var __debuffs: Array[Debuff]
 var __entity_ref: EntityClass
@@ -48,6 +47,10 @@ func add_debuff(d: Debuff) -> void:
 	d.set_attributes_ref(self)
 	
 	__debuffs.append(d)
+
+
+func get_base_speed() -> float:
+	return __base_speed
 
 
 func get_bonus_damage() -> float:
@@ -128,7 +131,7 @@ func get_speed() -> float:
 	var bonus: float = 1 + log(1 + __agility)
 	var penalty: float = 1 + (__weight / (__strength + 1))
 	
-	return BASE_SPEED * (bonus/penalty)
+	return __base_speed * (bonus/penalty)
 
 
 func get_sprint_speed() -> float:
@@ -160,6 +163,10 @@ func remove_debuff(debuff: Debuff) -> void:
 	
 	__debuffs.erase(debuff)
 	__ticker_ref.disconnect("tick_finished", debuff._tick)
+
+
+func set_base_speed(_speed: float) -> void:
+	__base_speed = _speed
 
 
 func set_entity(e: EntityClass) -> void:
