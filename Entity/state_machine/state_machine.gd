@@ -13,8 +13,39 @@ var __state_pool: StatePool
 var __state_runner: StateRunner
 
 
+@abstract func _initialize_state_pool(sp: StatePool)
+
+
+func _create_root_reference() -> void:
+	# Error if no node path to the root
+	if __root_path.is_empty():
+		push_error("Root path was not set! Please set it up...")
+		return
+	# Error if node path doesn't exists
+	if get_node(__root_path) == null:
+		return
+	
+	# Assign __root_object
+	__root_object = get_node(__root_path)
+
+
+func _initialize_state_runner() -> void:
+	# Error if no StateRunner child
+	if get_node("StateRunner") == null:
+		return
+	
+	__state_runner = get_node("StateRunner")
+	__state_runner.set_state_machine(self)
+
+
 func _ready() -> void:
 	update_configuration_warnings()
+	
+	_create_root_reference()
+	
+	_initialize_state_runner()
+	
+	_initialize_state_pool(StatePool.new())
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -52,8 +83,10 @@ func _set_state_runner(s_runner: StateRunner) -> void:
 
 
 ## Returns the [b]name[/b] of the __current_state, [b]NOT[/b] the [State] object itself
-func get_current_state() -> String:
-	return __current_state.get_name()
+func get_current_state() -> StringName:
+	if __current_state == null:
+		return &""
+	return StringName(__current_state.get_name())
 
 
 ## Returns the reference (a [State] object) of the current state.

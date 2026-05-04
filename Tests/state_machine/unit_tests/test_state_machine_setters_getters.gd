@@ -44,7 +44,11 @@ func test_setget_current_state() -> void:
 	
 	state_machine.set_current_state(state)
 	
-	assert_eq(state_machine.get_current_state(), "idle", "Test setter and getter of __current_state")
+	assert_eq(state_machine.get_current_state(), &"idle", "Test setter and getter of __current_state")
+
+
+func test_setget_current_state_to_return_empty_string_if_no_current_state_yet() -> void:
+	assert_eq(state_machine.get_current_state(), &"")
 
 
 func test_setget_root_object() -> void:
@@ -53,3 +57,10 @@ func test_setget_root_object() -> void:
 	state_machine.set_root_object(obj)
 	
 	assert_eq(state_machine.get_root_object(), obj, "Test setter and getter of __root_object")
+
+
+func test_setget_root_path() -> void:
+	var path: NodePath = NodePath("MockPlayer")
+	state_machine.set_root_path(path)
+	assert_eq(state_machine.get_root_path(), path)
+	assert_eq(state_machine.__root_path, path)

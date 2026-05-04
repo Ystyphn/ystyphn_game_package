@@ -4,5 +4,9 @@ extends StateMachine
 class_name FakeStateMachine
 
 
-func _ready() -> void:
-	pass
+var state_pool_initialized: bool = false
+
+
+func _initialize_state_pool(sp: StatePool):
+	if sp != null and sp is StatePool:
+		state_pool_initialized = true
