@@ -46,3 +46,21 @@ func set_initial_ui(ui_name: StringName) -> void:
 
 func set_ui_pool(up: UIPool) -> void:
 	__ui_pool = up
+
+
+func transition_to(_ui_stringname: StringName, _param: TransitionParameter = null) -> void:
+	if __ui_pool == null:
+		push_error("UI pool was not set!")
+		return
+	
+	if __ui_pool.get_by_name(_ui_stringname) == null:
+		push_error("UI with the specified stringname wasn't found")
+		return
+	
+	var new_ui: UserInterface = __ui_pool.get_by_name(_ui_stringname)
+	
+	# Current UI should remove itself from the scene tree upon exit() function was called
+	__current_ui.exit()
+	__current_ui = new_ui
+	add_child(__current_ui)
+	__current_ui.enter(_param)

@@ -1,0 +1,2 @@
+extends GlobalsAutoload
+class_name FakeGlobals
