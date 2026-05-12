@@ -4,9 +4,9 @@ class_name UserInterface
 
 
 @export var __animation_player_path: NodePath
+@export var __stringname: StringName
 
 var __animation_player: AnimationPlayer
-var __stringname: StringName
 
 
 @abstract func enter(param: TransitionParameter) -> void

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bqp2axr4trjvv"]
+
+[ext_resource type="Script" uid="uid://c00jf2onx7fpt" path="res://packages/ygp/HUDs/counting_ui/counting_ui.gd" id="1_x2qxs"]
+[ext_resource type="FontFile" uid="uid://sk3dsq15ljca" path="res://assets/fonts/Micro_5/Micro5-Regular.ttf" id="3_du88b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xwcnr"]
+line_spacing = 1.0
+font = ExtResource("3_du88b")
+font_size = 32
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="CountingUI" type="Control" unique_id=1694501172]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_behavior_recursive = 1
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_x2qxs")
+metadata/_custom_type_script = "uid://c00jf2onx7fpt"
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1114804262]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=130171441]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1835266828]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_xwcnr")
+clip_text = true

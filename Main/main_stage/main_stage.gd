@@ -20,3 +20,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append("This main stage has no area stage to run. Please add an AreaStage2D variant for this to run")
 	
 	return warnings
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_CHILD_ORDER_CHANGED:
+		update_configuration_warnings()

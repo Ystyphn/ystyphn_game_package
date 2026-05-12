@@ -26,6 +26,19 @@ func test_transition_to_function_will_change_current_ui() -> void:
 	assert_eq(ui_manager.get_current_ui(), ui_2)
 
 
+func test_transition_to_can_change_into_new_ui_even_if_current_ui_is_null() -> void:
+	var ui_1: UserInterface = double(FakeUserInterface).new()
+	var ui_pool: UIPool = double(UIPool).new()
+	
+	ui_manager.set_ui_pool(ui_pool)
+	
+	stub(ui_1.get_stringname).to_return(&"standard_ui")
+	stub(ui_pool.get_by_name.bind(&"standard_ui")).to_return(ui_1)
+	
+	ui_manager.transition_to("standard_ui")
+	assert_eq(ui_manager.get_current_ui(), ui_1)
+
+
 func test_transition_to_function_can_exit_and_enter_of_the_ui() -> void:
 	var ui_1: UserInterface = double(FakeUserInterface).new()
 	var ui_2: UserInterface = double(FakeUserInterface).new()

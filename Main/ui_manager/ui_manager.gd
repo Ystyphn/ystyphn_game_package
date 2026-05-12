@@ -1,3 +1,4 @@
+@tool
 @abstract
 extends Control
 class_name UIManager
@@ -60,7 +61,8 @@ func transition_to(_ui_stringname: StringName, _param: TransitionParameter = nul
 	var new_ui: UserInterface = __ui_pool.get_by_name(_ui_stringname)
 	
 	# Current UI should remove itself from the scene tree upon exit() function was called
-	__current_ui.exit()
+	if __current_ui != null:
+		__current_ui.exit()
 	__current_ui = new_ui
 	add_child(__current_ui)
 	__current_ui.enter(_param)
