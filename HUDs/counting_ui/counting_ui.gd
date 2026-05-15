@@ -14,3 +14,15 @@ class_name CountingUI
 		var label: Label = get_node("HBoxContainer/Label")
 		__count = value
 		label.set_text(__count)
+		
+
+var __int_count: int = 0
+
+
+func get_current_count() -> String:
+	return __count
+
+
+func set_current_count(c: int) -> void:
+	__int_count = c
+	__count = str(c)

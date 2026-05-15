@@ -13,6 +13,10 @@ var __state_pool: StatePool
 var __state_runner: StateRunner
 
 
+## This will be implemented to child classes. Follow these steps to make this work properly [br]
+##    1. Set the state pool to the [param sp]
+##    2. Add all states via the [method StatePool.add_state] method
+##    3. Initialize the state pool by calling [method StatePool.intialize] method
 @abstract func _initialize_state_pool(sp: StatePool)
 
 
@@ -99,10 +103,10 @@ func get_initial_state() -> String:
 
 
 ## Returns the [b]name[/b] of the __previous_state, [b]NOT[/b] the [State] object itself
-func get_previous_state() -> String:
+func get_previous_state() -> StringName:
 	if __previous_state == null:
-		push_error("Error in ", self, " previous state doesn't exist!")
-		assert(__previous_state != null, "__previous_state must not be null!")
+		push_warning("Warning in ", self, " previous state doesn't exist!")
+		return &""
 	return __previous_state.get_name()
 
 
