@@ -31,12 +31,11 @@ func get_states() -> PackedStringArray:
 	return s_arr
 
 
+## Automatically called by [method StateMachine._ready]
 func initialize(sm: StateMachine) -> void:
 	for state in __pool:
 		state.set_state_machine(sm)
-		
-		if state is ControllableState:
-			state.initialize(sm.get_root_object())
+		state.initialize(sm.get_root_object())
 
 
 ## Removes all instances of state with the name specified in [param s_name].

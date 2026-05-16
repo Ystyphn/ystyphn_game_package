@@ -5,33 +5,40 @@ class_name ControllableEntity
 
 
 @export var __input_receivers_path: NodePath
+@export var __use_input_receiver: bool = false
 
 var __input_receivers: Node
 
 
 func _ready() -> void:
 	super._ready()
-	if __input_receivers_path.is_empty():
-		push_error("Input receivers path was not set!")
-		return
 	
-	__input_receivers = get_node(__input_receivers_path)
+	print("Controllable Entity _ready was called...")
 	
-	for __input_receiver in get_input_receivers():
-		__input_receiver.set_entity(self)
+	# Only run this if this entity will use an input receiver
+	if __use_input_receiver:
+		if __input_receivers_path.is_empty():
+			push_error("Input receivers path was not set!")
+			return
+			
+		__input_receivers = get_node(__input_receivers_path)
+		
+		for __input_receiver in get_input_receivers():
+			__input_receiver.set_entity(self)
 	
 	if __state_machine_path.is_empty():
 		push_error("State machine path was not set!")
 		return
 	
-	var sm = get_node(__state_machine_path)
-	if sm == null:
-		push_error("Specified state machine path was not found!")
-		return
+	# Set up state machine reference
+	if has_node(__state_machine_path):
+		var sm = get_node(__state_machine_path)
 	
-	set_state_machine(sm)
-	
-	get_state_machine().set_root_object(self)
+		set_state_machine(sm)
+		
+		get_state_machine().set_root_object(self)
+	else:
+		push_error("Specified state machine not found!")
 
 
 ## Corresponds to the [method CharacterBody2D.set_velocity]. The ONLY purpose of this

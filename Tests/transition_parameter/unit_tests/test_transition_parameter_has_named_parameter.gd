@@ -19,6 +19,11 @@ func test_has_named_parameter_can_check_whether_the_specified_value_exists() -> 
 	assert_false(transition_parameter.has_named_param("small"))
 
 
+func test_has_named_parameter_to_return_false_if_there_are_no_parameters() -> void:
+	transition_parameter.named_params = {}
+	assert_false(transition_parameter.has_named_param("input"))
+
+
 # ------------------ EXTENSIONS ------------------
 
 

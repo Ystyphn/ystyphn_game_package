@@ -1,2 +1,3 @@
+@tool
 extends ControllableEntity
 class_name FakeControllableEntity

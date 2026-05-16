@@ -31,7 +31,7 @@ func test_initialize_can_set_state_machine_to_every_states() -> void:
 	assert_called(state_3.set_state_machine.bind(state_machine))
 	
 
-func test_initialize_can_set_entity_reference_to_controllable_states() -> void:
+func test_initialize_can_set_entity_reference_to_states() -> void:
 	var state_1: FakeControllableState = double(FakeControllableState).new()
 	var state_2: FakeControllableState = double(FakeControllableState).new()
 	var state_3:  FakePlayerState = double(FakePlayerState).new()
@@ -70,24 +70,25 @@ func test_initialize_can_set_entity_reference_to_controllable_states() -> void:
 
 # Extensions ---------------------------------------------------------------
 func test_initialize_does_not_call_initialize_on_non_controllable_states() -> void:
-	var state_1: FakeState = double(FakeState).new()
-	var state_machine: FakeStateMachine = double(FakeStateMachine).new()
-	var entity: FakeControllableEntity = double(FakeControllableEntity).new()
+#	var state_1: FakeState = double(FakeState).new()
+#	var state_machine: FakeStateMachine = double(FakeStateMachine).new()
+#	var entity: FakeControllableEntity = double(FakeControllableEntity).new()
 	
-	stub(state_machine.get_root_object).to_return(entity)
+#	stub(state_machine.get_root_object).to_return(entity)
 	
-	stub(state_1.set_state_machine).to_do_nothing()
+#	stub(state_1.set_state_machine).to_do_nothing()
 	
 	# Spy initialize
-	stub(state_1.initialize).to_do_nothing()
+#	stub(state_1.initialize).to_do_nothing()
+
+#	state_pool.add_state(state_1)
 	
-	state_pool.add_state(state_1)
+#	state_pool.initialize(state_machine)
 	
-	state_pool.initialize(state_machine)
+#	assert_called(state_1.set_state_machine.bind(state_machine))
 	
-	assert_called(state_1.set_state_machine.bind(state_machine))
-	
-	assert_not_called(state_1.initialize)
+#	assert_not_called(state_1.initialize)
+	pass_test("Irrelevant test. State Pool should be able to call initialize() functions to every states")
 
 
 func test_initialize_calls_get_root_object_only_when_needed() -> void:
@@ -109,17 +110,6 @@ func test_initialize_calls_get_root_object_only_when_needed() -> void:
 	
 	assert_called(state_machine.get_root_object)
 	assert_called(state_2.initialize.bind(entity))
-
-
-func test_initialize_with_empty_pool_does_nothing() -> void:
-	var state_machine: FakeStateMachine = double(FakeStateMachine).new()
-	
-	# No states added
-	
-	state_pool.initialize(state_machine)
-	
-	# No assertions needed — test passes if no errors occur
-	assert_true(true)
 
 
 func test_initialize_propagates_same_state_machine_instance() -> void:

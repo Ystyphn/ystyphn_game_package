@@ -5,6 +5,14 @@ class_name StateRunner
 var __state_machine: StateMachine
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if __state_machine == null:
+		push_error("Can't run _unhandled_input. No state machine detected.")
+		return
+	if __state_machine.get_current_state_ref() != null:
+		__state_machine.get_current_state_ref().unhandled_input(event)
+
+
 func _physics_process(delta: float) -> void:
 	if __state_machine == null:
 		push_error("Can't run physics process. No state machine detected.")

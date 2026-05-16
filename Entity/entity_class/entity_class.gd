@@ -17,6 +17,17 @@ var __state_machine: StateMachine
 
 func _ready() -> void:
 	update_configuration_warnings()
+	
+	if __state_machine_path.is_empty():
+		push_error("You haven't set the state machine path! Set it first.")
+		return
+	else:
+		# Only set the __state_machine if it's found
+		if has_node(__state_machine_path):
+			__state_machine = get_node(__state_machine_path)
+		# Otherwise, push an error
+		else:
+			push_error(self, "Has path to state machine but not found in children!")
 
 
 func _get_configuration_warnings() -> PackedStringArray:

@@ -14,6 +14,9 @@ var __state_machine: StateMachine
 ## Called every transition from an old state. Interface method.
 @abstract func exit() -> void
 
+## This will be necessary to set run initializations
+@abstract func initialize(_ro: Object)
+
 ## Corresponds to [method Node._physics_process] that'll be called every physics tick, 
 ## called eveytime by [method StateRunner._physics_process].
 ## Interface method.
@@ -24,6 +27,11 @@ var __state_machine: StateMachine
 ## called everytime by [method StateRunner._process].
 ## Interface method.
 @abstract func process_update(_delta: float) -> void
+
+
+## Corresponds to [method Node._unhandled_input]
+func unhandled_input(_event: InputEvent) -> void:
+	pass
 
 
 func get_state_machine() -> StateMachine:
